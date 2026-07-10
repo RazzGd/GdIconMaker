@@ -1,0 +1,12 @@
+{
+    "geode": "5.7.1",
+    "id": "RazzGd.GdIconMaker",
+    "version": "1.0.0",
+    "name": "GdIconMaker",
+    "developer": "RazzGd",
+    "description": "An Open Source C++ Mod That Let's You Create Icons In Gd",
+    "dependencies": [],
+    "resources": {
+        "sprites": []
+    }
+}
