@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-# Perfectly mapped to match your exact case tracking rules
+# 1. Links perfectly to your exact case-sensitive repository identity
 project(GdIconMaker)
 
 include(FetchContent)
@@ -12,6 +12,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Geode)
 
+# 2. Tracks the precise case-sensitive output format 
 add_geode_mod(
     ${PROJECT_NAME}
     RazzGd.GdIconMaker
