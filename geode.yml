@@ -1,0 +1,3 @@
+# geode.yml
+# Tells the cloud server to download the correct Geode SDK and Android compiler tools
+version: v3.0.0-beta.1
