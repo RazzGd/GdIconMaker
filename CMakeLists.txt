@@ -1,18 +1,12 @@
 cmake_minimum_required(VERSION 3.13)
 
-# 1. Links perfectly to your exact case-sensitive repository identity
+# Perfectly mapped to match your exact case tracking rules
 project(GdIconMaker)
 
-include(FetchContent)
+# This single line finds the Geode SDK headers that the runner downloads for you
+find_package(Geode REQUIRED)
 
-FetchContent_Declare(
-    Geode
-    GIT_REPOSITORY https://github.com
-    GIT_TAG main
-)
-FetchContent_MakeAvailable(Geode)
-
-# 2. Tracks the precise case-sensitive output format 
+# Tracks the precise case-sensitive output format 
 add_geode_mod(
     ${PROJECT_NAME}
     RazzGd.GdIconMaker
