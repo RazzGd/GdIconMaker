@@ -24,6 +24,8 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           target: ${{ matrix.config.target }}
+          # Tells the compiler to store the binary for the package job!
+          combine: true
 
   package:
     name: Package builds
