@@ -3,6 +3,10 @@ name: Build Geode Mod
 on:
   workflow_dispatch:
 
+# FORCES GITHUB RUNNERS TO ACCEPT THE GEODE COMPILER ENVIRONMENT LAYOUT
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   build:
     strategy:
@@ -24,7 +28,6 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           target: ${{ matrix.config.target }}
-          # Tells the compiler to store the binary for the package job!
           combine: true
 
   package:
