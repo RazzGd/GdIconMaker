@@ -1,19 +1,22 @@
-cmake_minimum_required(VERSION 3.20)
+name: Build Geode Mod macOS
 
-project(GdIconMaker)
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+jobs:
+  build:
+    name: Build macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
 
-find_package(Geode REQUIRED)
+      - name: Setup Geode CLI
+        uses: geode-sdk/setup-geode-mod@main
 
-# 1. Find all C++ files in the src folder automatically
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-
-# 2. Setup the mod (Looks for mod.json in the SAME folder as this file)
-setup_geode_mod(
-    id "razzgd.gd_icon_maker"
-)
-
-# 3. Add the sources we found to the mod
-target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
+      - name: Build Mod
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          platform: mac
