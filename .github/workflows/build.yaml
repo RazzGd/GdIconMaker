@@ -7,20 +7,22 @@ on:
       - main
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        config:
-          - { name: Windows, os: windows-latest, target: "win" }
-          - { name: macOS, os: macos-latest, target: "mac" }
-
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
-
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Build Mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          target: ${{ matrix.config.target }}
+          platform: win
+
+  build-mac:
+    name: Build macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Mod
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          platform: mac
