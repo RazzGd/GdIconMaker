@@ -11,9 +11,9 @@ jobs:
     strategy:
       matrix:
         config:
-          - { name: Windows, os: windows-latest }
-          - { name: macOS, os: macos-latest }
-          - { name: Android, os: ubuntu-latest, target: "both" }
+          - { name: Windows, os: windows-latest, target: "win" }
+          - { name: macOS, os: macos-latest, target: "mac" }
+          - { name: Android, os: ubuntu-latest, target: "android" }
 
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
