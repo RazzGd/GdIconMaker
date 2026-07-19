@@ -1,47 +1,16 @@
-name: Build Geode Mod
+cmake_minimum_required(VERSION 3.20)
 
-on:
-  workflow_dispatch:
+project(GdIconMaker)
 
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-jobs:
-  build:
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - name: Android64
-            os: ubuntu-latest
-            target: Android64
+find_package(Geode REQUIRED)
 
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+setup_geode_mod(
+    id "razzgd.gd_icon_maker"
+)
 
-      # FIX: Installs the actual Geode SDK binaries directly onto the machine!
-      - name: Build the mod
-        uses: geode-sdk/build-geode-mod@main
-        with:
-          target: ${{ matrix.config.target }}
-          sdk: latest
-          cli: latest
-          combine: true
-
-  package:
-    name: Package builds
-    runs-on: ubuntu-latest
-    needs: ['build']
-
-    steps:
-      - uses: geode-sdk/build-geode-mod/combine@main
-        id: build
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Build Output
-          path: ${{ steps.build.outputs.build-output }}
+target_sources(GdIconMaker PRIVATE ${SOURCES})
